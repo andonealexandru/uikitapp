@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "node build/build.js",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+    "postinstall": "npm run build",
     "start": "node server.js"
   },
   "dependencies": {
