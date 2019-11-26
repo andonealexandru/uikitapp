@@ -1,32 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <vk-navbar class="nav">
+      <vk-navbar-nav>
+        <vk-navbar-logo><img src="./assets/logo.png" class="logo"></vk-navbar-logo>
+        <vk-navbar-nav-item title="Home" :active="activeHome" @click="activateHome"></vk-navbar-nav-item>
+      </vk-navbar-nav>
+
+      <vk-navbar-nav slot="right">
+        <vk-navbar-nav-item title="Sign In" :active="activeSignIn"  @click="activateSignIn"></vk-navbar-nav-item>
+        <vk-navbar-nav-item title="Log In" :active="activeLogIn"  @click="activateLogIn"></vk-navbar-nav-item>
+      </vk-navbar-nav>
+    </vk-navbar>
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style scoped>
+.logo {
+  max-height: 50%
 }
+.nav {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+</style>>
+</style>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data() {
+    return {
+      activeHome: true,
+      activeSignIn: true,
+      activeLogIn: true
+    }
+  },
+  created: function () {
+    this.activeHome = true
+    this.activeLogIn = false
+    this.activeSignIn = false
+  },
+  methods: {
+    activateHome () {
+      this.activeHome = true
+      this.activeSignIn = false
+      this.activeLogIn = false
+      this.$router.push({ name: 'home' })
+    },
+    activateSignIn () {
+      this.activeHome = false
+      this.activeSignIn = true
+      this.activeLogIn = false
+      this.$router.push({ name: 'signin' })
+    },
+    activateLogIn () {
+      this.activeHome = false
+      this.activeSignIn = false
+      this.activeLogIn = true
+      this.$router.push({ name: 'login' })
     }
   }
 }
-</style>
+</script>
