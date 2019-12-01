@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div class="uk-padding uk-flex-middle uk-dark">
+  <div class="uk-padding uk-flex-middle">
     <div class="uk-width-2-5@m uk-align-center">
       <vk-card hover v-if="showForm">
         <form @submit.prevent="handleSubmit">
